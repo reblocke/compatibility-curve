@@ -5,6 +5,16 @@ All notable changes are recorded here. This repository follows
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-07-30
+
+- Add explicit README metadata for the current app version, experimental maturity, exact versioned
+  release URL, GitHub publication state, and software citation guidance.
+- Keep maintenance status independent of prerelease or stable GitHub promotion state.
+- Add a repository-policy regression that keeps README release/version/citation metadata aligned
+  with package and `CITATION.cff` versions.
+- Preserve all scientific, focused-response, browser UI, privacy, and export behavior; Core remains
+  pinned to `wald-inference` v0.4.1.
+
 ## [0.1.2] - 2026-07-30
 
 - Wrap Plotly figure titles into bounded lines so every supported effect label remains readable
@@ -38,7 +48,8 @@ All notable changes are recorded here. This repository follows
 This initial prerelease records software and scientific-reference validation; it does not claim
 clinical validation or completion of the independent portfolio-wide review.
 
-[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/reblocke/compatibility-curve/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/reblocke/compatibility-curve/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/reblocke/compatibility-curve/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.0
