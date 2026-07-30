@@ -108,15 +108,30 @@ def test_exports_use_exact_focused_columns_and_separate_png_hooks() -> None:
     } & set(keys)
 
 
-def test_related_tool_routes_are_static_and_explicit() -> None:
+def test_related_wald_tool_blocks_are_static_compact_and_exact() -> None:
     html = (WEB_ROOT / "index.html").read_text(encoding="utf-8")
+    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+    expected_links = [
+        "https://reblocke.github.io/wald-inference-tools/",
+        "https://reblocke.github.io/wald-likelihood-support/",
+        "https://reblocke.github.io/conf_curve_likelihood/",
+        "https://github.com/reblocke/compatibility-curve",
+        "https://github.com/reblocke/wald-inference-core/releases/tag/v0.1.1",
+        "https://github.com/reblocke/compatibility-curve/blob/main/docs/PRIVACY.md",
+    ]
 
-    for repository in [
-        "wald-likelihood-support",
-        "critical-effect-size",
-        "type-s-m-calibrator",
-        "precision-guardrail-planner",
-        "conf_curve_likelihood",
-    ]:
-        assert repository in html
+    html_block = html.split('<section id="related-wald-tools">', maxsplit=1)[1].split(
+        "</section>", maxsplit=1
+    )[0]
+    readme_block = readme.split("## Related Wald tools", maxsplit=1)[1].split("\n## ", maxsplit=1)[
+        0
+    ]
+
+    assert "<h2>Related Wald tools</h2>" in html_block
+    assert re.findall(r'href="([^"]+)"', html_block) == expected_links
+    assert re.findall(r"\]\((https://[^)]+)\)", readme_block) == expected_links
+    assert "wald-inference Core v0.1.1" in html_block
+    assert "wald-inference Core v0.1.1" in readme_block
+    assert "Privacy note" in html_block
+    assert "Privacy note" in readme_block
     assert "fetch(" not in html

@@ -176,19 +176,16 @@ storage, input-bearing URL state, account, or upload path. Inputs exist only in 
 memory. CSV and PNG files are generated locally after an explicit export action. Do not enter
 protected health information or patient-level data. See [Privacy](docs/PRIVACY.md).
 
-## Related tools
+## Related Wald tools
 
-- [`wald-likelihood-support`](https://github.com/reblocke/wald-likelihood-support) for relative
-  evidential support;
-- [`critical-effect-size`](https://github.com/reblocke/critical-effect-size) for detectability;
-- [`type-s-m-calibrator`](https://github.com/reblocke/type-s-m-calibrator) for sign/magnitude
-  error under assumed truths;
-- [`precision-guardrail-planner`](https://github.com/reblocke/precision-guardrail-planner) for
-  required precision;
-- the [integrated workbench](https://reblocke.github.io/conf_curve_likelihood/) for side-by-side
-  exploration.
+- [Wald inference tools catalog](https://reblocke.github.io/wald-inference-tools/)
+- [Adjacent focused app: likelihood support](https://reblocke.github.io/wald-likelihood-support/)
+- [Integrated workbench](https://reblocke.github.io/conf_curve_likelihood/)
+- [Source repository](https://github.com/reblocke/compatibility-curve)
+- [wald-inference Core v0.1.1](https://github.com/reblocke/wald-inference-core/releases/tag/v0.1.1)
+- [Privacy note](https://github.com/reblocke/compatibility-curve/blob/main/docs/PRIVACY.md)
 
-These are static links, not runtime dependencies.
+These are static navigation links, not runtime dependencies.
 
 ## License and citation
 
