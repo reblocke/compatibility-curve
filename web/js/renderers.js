@@ -28,6 +28,24 @@ function locationLabel(value) {
   return value.replaceAll("_", " ");
 }
 
+function wrapPlotTitle(text, maxLineLength = 30) {
+  const lines = [];
+  let currentLine = "";
+  for (const word of text.split(/\s+/)) {
+    const candidate = currentLine ? `${currentLine} ${word}` : word;
+    if (currentLine && candidate.length > maxLineLength) {
+      lines.push(currentLine);
+      currentLine = word;
+    } else {
+      currentLine = candidate;
+    }
+  }
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+  return lines.join("<br>");
+}
+
 export function buildSummary(response) {
   const reconstruction = response.reconstruction;
   return (
@@ -193,8 +211,10 @@ function plotLayout(response, displayOptions) {
 
   return {
     title: {
-      text: `Compatibility across candidate ${effect.label.toLowerCase()} values`,
-      font: { size: 20 },
+      text: wrapPlotTitle(
+        `Compatibility across candidate ${effect.label.toLowerCase()} values`,
+      ),
+      font: { size: 18 },
     },
     xaxis: {
       title: { text: effect.label },

@@ -49,7 +49,7 @@ def test_stage_manifest_records_versions_files_and_hashes(tmp_path: Path) -> Non
         "role": "app",
         "distribution": "compatibility-curve",
         "import_name": "compatibility_curve",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "artifact_url": None,
         "artifact_sha256": None,
     }
@@ -101,7 +101,7 @@ def test_stage_is_deterministic_and_removes_stale_files(tmp_path: Path) -> None:
 def test_stage_fails_on_configured_version_mismatch(tmp_path: Path) -> None:
     config = tmp_path / "browser-stage.toml"
     source = (PROJECT_ROOT / "browser-stage.toml").read_text(encoding="utf-8")
-    config.write_text(source.replace('version = "0.1.1"', 'version = "9.9.9"'), encoding="utf-8")
+    config.write_text(source.replace('version = "0.1.2"', 'version = "9.9.9"'), encoding="utf-8")
 
     with pytest.raises(StagingError, match="expected '9.9.9'"):
         stage_browser_packages(
