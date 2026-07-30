@@ -33,6 +33,7 @@ def test_ci_and_pages_use_repository_targets() -> None:
     assert "make e2e" in ci
     assert "make e2e-webkit-smoke" in ci
     assert "make stage-web" in pages
+    assert "enablement: true" in pages
     assert "web" in pages
 
 
@@ -58,3 +59,37 @@ def test_generated_stage_is_ignored_and_not_tracked() -> None:
         ).stdout
         == ""
     )
+
+
+def test_required_public_documentation_is_complete_and_has_no_author_prompts() -> None:
+    required = [
+        "README.md",
+        "LICENSE",
+        "CITATION.cff",
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "llms.txt",
+        "docs/SCIENTIFIC_SCOPE.md",
+        "docs/VALIDATION.md",
+        "docs/PRIVACY.md",
+        "docs/DECISIONS.md",
+        "docs/MAINTENANCE.md",
+        "docs/RUNTIME_DEPENDENCIES.md",
+    ]
+    contents = []
+    for relative in required:
+        path = PROJECT_ROOT / relative
+        assert path.is_file(), relative
+        contents.append(path.read_text(encoding="utf-8"))
+    assert "AUTHOR ACTION REQUIRED" not in "\n".join(contents)
+
+
+def test_license_identity_is_canonical() -> None:
+    license_text = (PROJECT_ROOT / "LICENSE").read_text(encoding="utf-8")
+    citation = (PROJECT_ROOT / "CITATION.cff").read_text(encoding="utf-8")
+
+    assert "Copyright (c) 2026 Brian Locke" in license_text
+    assert "MIT License" in license_text
+    assert "family-names: Locke" in citation
+    assert "given-names: Brian" in citation
+    assert "license: MIT" in citation

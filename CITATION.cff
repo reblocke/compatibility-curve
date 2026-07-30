@@ -1,15 +1,12 @@
 cff-version: 1.2.0
 message: >-
-  Cite the repository release or commit used. AUTHOR ACTION REQUIRED after
-  initialization: verify the title, authors, version, and any related article
-  or DOI before presenting this as the citation for a scientific app.
-title: Scientific Applet Template
+  Please cite the tagged software release or exact commit used in an analysis.
+title: Wald Compatibility Curve
 type: software
 authors:
   - family-names: Locke
     given-names: Brian
-repository-code: https://github.com/reblocke/scientific-applet-template
-url: https://reblocke.github.io/scientific-applet-template/
+repository-code: https://github.com/reblocke/compatibility-curve
+url: https://reblocke.github.io/compatibility-curve/
 license: MIT
 version: 0.1.0
-date-released: 2026-07-29

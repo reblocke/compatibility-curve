@@ -1,14 +1,41 @@
 [project]
-name = "scientific-applet-template-package"
+name = "compatibility-curve"
 version = "0.1.0"
-description = "Reusable client-side Python scaffold for a focused scientific applet"
+description = "Static client-side app for reconstructing Wald compatibility curves from reported 95% confidence intervals"
 readme = "README.md"
 requires-python = ">=3.12"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Brian Locke" },
 ]
-dependencies = []
+maintainers = [
+  { name = "Brian Locke" },
+]
+keywords = [
+  "compatibility-curve",
+  "confidence-curve",
+  "confidence-interval",
+  "wald-inference",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dependencies = [
+  "numpy>=2.2.5,<2.3",
+  "wald-inference @ https://github.com/reblocke/wald-inference-core/releases/download/v0.1.1/wald_inference-0.1.1-py3-none-any.whl#sha256=95bc10d770836544d726362c401032e0640a5a9ec1573f043add7f6bd3a65457",
+]
+
+[project.urls]
+Repository = "https://github.com/reblocke/compatibility-curve"
+Issues = "https://github.com/reblocke/compatibility-curve/issues"
+Documentation = "https://github.com/reblocke/compatibility-curve/blob/main/docs/SCIENTIFIC_SCOPE.md"
+Hosted = "https://reblocke.github.io/compatibility-curve/"
 
 [dependency-groups]
 dev = [
@@ -25,9 +52,13 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
+include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+compatibility_curve = ["py.typed"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
@@ -47,4 +78,4 @@ src = ["src", "scripts", "tests"]
 select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["template_applet"]
+known-first-party = ["compatibility_curve"]

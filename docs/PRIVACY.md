@@ -1,38 +1,50 @@
 # Privacy
 
+## Intended data
+
+The app needs only aggregate, published, or synthetic effect estimates, 95% confidence limits,
+null values, and reference thresholds. It is not designed to receive protected health
+information, direct identifiers, patient-level records, free-text clinical notes, or uploads.
+Do not enter such data.
+
 ## Data flow
 
-User input is read by the page, sent through `postMessage` to a same-origin Web Worker, processed
-by Python in Pyodide, and returned to the page for display/export. Inputs exist only in page and
-worker memory.
-
-## Guardrails
+Input is read by the page, sent through `postMessage` to a same-origin Web Worker, processed by
+Python in Pyodide, and returned to the page for display/export. Values exist only in transient
+page and worker memory.
 
 The app has:
 
-- no backend or database;
-- no telemetry or analytics;
-- no local storage or session storage;
+- no backend, server-side calculation, or database;
+- no telemetry, analytics, or crash-reporting service;
+- no local storage, session storage, IndexedDB, service-worker cache, or hidden persistence;
 - no input values in URL query strings or fragments;
-- no cookies;
+- no cookies, accounts, saved links, or shared-state feature;
 - no application logging of inputs or protected health information;
-- no hidden persistence;
 - no upload path.
 
-Static requests fetch HTML, CSS, JavaScript, Plotly, Pyodide, and generated Python files. User
-values are not included in request URLs, headers, or bodies. CDN operators can observe ordinary
-network metadata such as IP address and requested static asset, but not values entered into this
-app.
+## Static network requests
 
-## Exports
+The browser fetches the static page, CSS, JavaScript, generated Python files, Plotly, and
+Pyodide-provided packages. User-entered values are not placed in request URLs, headers, or
+bodies. CDN operators can observe ordinary network metadata such as IP address and requested
+asset, but not values entered into the form.
 
-CSV and PNG files are created locally after an explicit button press. The browser’s normal
-download behavior determines where those files are saved. The app does not upload or retain
-them.
+Automated tests inspect requests after a distinctive input value and fail if it appears in any
+URL or body.
 
-## Author actions
+## Exports and clipboard
 
-AUTHOR ACTION REQUIRED: review every new input, example, fixture, URL, log, export, dependency,
-and deployment change. Use synthetic fixtures. If any storage, server, analytics, sharing, or
-upload feature is proposed, stop and document data path, retention, access, and compliance
-assumptions before implementation.
+CSV and PNG files are generated locally after an explicit button press. The browser's normal
+download behavior determines where files are saved; the app does not upload or retain them.
+The figure caption is written to the clipboard only after the copy button is selected.
+
+Exported files can reveal the aggregate values a user entered. Users are responsible for where
+downloads and copied text are subsequently stored or shared.
+
+## Change boundary
+
+Any proposed backend, storage, analytics, sharing, upload, account, or user-generated URL feature
+requires a new documented data-flow and privacy review before implementation. New examples,
+fixtures, logs, dependencies, exports, and deployments must remain synthetic or aggregate and
+must not introduce PHI.

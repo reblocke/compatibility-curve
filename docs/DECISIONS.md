@@ -1,29 +1,54 @@
 # Decisions
 
-## 2026-07-29 — Functional Python core and browser worker
+## 2026-07-29 — Released core owns all Wald calculations
 
-Python is the calculation source of truth. The static UI sends strict JSON to a restartable
-Web Worker running exact-version Pyodide. This prevents Python initialization and calculation
-from blocking the main UI thread.
+The app consumes public root APIs from exact `wald-inference` 0.1.1. It does not copy a formula,
+import legacy/internal modules, or call the broad integrated summary. This keeps one numerical
+authority and makes the focused contract independently auditable.
 
-## 2026-07-29 — Generated, verified browser stage
+## 2026-07-29 — Compatibility-only response
 
-The installed locked app and optional external packages are staged from a TOML manifest.
-Generated files are ignored. File, package, and aggregate hashes are verified before Python is
-loaded, avoiding a manually synchronized JavaScript file list.
+The response is limited to metadata, reconstruction, the four-field compatibility grid,
+threshold rows, compatibility guides, and warnings. Likelihood, support, power, critical effects,
+selection, Type S/M, information, and precision are excluded even if the core can calculate
+them.
 
-## 2026-07-29 — No live shared UI dependency
+## 2026-07-29 — Fixed reported 95% intervals in version 0.1.0
 
-The repository is a creation-time template, not a runtime framework. Initialized apps may evolve
-independently without a shared component release becoming an application availability risk.
+The interface accepts only two-sided 95% confidence limits. Arbitrary confidence levels would
+change validation, labels, reconstruction semantics, fixtures, and interpretation and require a
+separate reviewed change.
+
+## 2026-07-29 — CI midpoint remains authoritative
+
+A supplied point estimate is validation evidence but does not silently replace the reconstructed
+working-scale midpoint. This preserves the integrated baseline contract and avoids mixing a
+rounded point estimate with interval-derived uncertainty.
+
+## 2026-07-29 — Display choices are presentation-only
+
+Plausible display bounds define only the x-grid shown and exported. Ratio-axis linear/log
+spacing and guide visibility are front-end choices and are not sent to the scientific contract.
+Summary and threshold results remain invariant.
+
+## 2026-07-29 — Thresholds are reference markers, not claim rules
+
+The app reports compatibility and relative location for user-supplied thresholds. It does not
+validate an MCID, assign benefit direction, classify a claim, or recommend a decision.
+
+## 2026-07-29 — Static worker with verified generated stage
+
+Python runs in a restartable Web Worker. The installed locked app and core packages are staged
+from `browser-stage.toml`, and file/package/bundle hashes are checked before import. Generated
+files remain ignored and reproducible from a clean checkout.
 
 ## 2026-07-29 — Strict client-side privacy boundary
 
-There is no backend, telemetry, persistence, cookie, or input-bearing URL. Static CDN requests do
-not include user input.
+There is no backend, telemetry, persistence, cookie, account, upload, or input-bearing URL.
+Exports are local and explicit. Expanding this boundary requires a new privacy decision.
 
-## New decision record
+## 2026-07-29 — Creation-time template, no shared UI runtime
 
-AUTHOR ACTION REQUIRED: append dated decisions that change scientific meaning, runtime,
-dependencies, validation, privacy, exports, accessibility, or maintenance. Do not silently
-rewrite historical decisions.
+The repository was created from `scientific-applet-template` 0.1.0 at commit
+`a360bde95c192d8de4f9a3b531e73600ebf3d8b8`. The copied browser shell may evolve locally and has
+no runtime dependency on the template repository.

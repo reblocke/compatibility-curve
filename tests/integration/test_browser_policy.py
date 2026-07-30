@@ -3,6 +3,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from wald_inference import EFFECT_SPECS
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 WEB_ROOT = PROJECT_ROOT / "web"
 
@@ -29,6 +31,7 @@ def test_production_web_code_has_no_persistence_telemetry_or_input_urls() -> Non
     forbidden_fragments = [
         "localStorage",
         "sessionStorage",
+        "indexedDB",
         "document.cookie",
         "location.search",
         "location.hash",
@@ -43,27 +46,77 @@ def test_production_web_code_has_no_persistence_telemetry_or_input_urls() -> Non
         assert "input" not in argument.lower()
 
 
-def test_ui_contains_accessibility_and_scope_landmarks() -> None:
+def test_ui_contains_accessibility_scope_and_text_alternatives() -> None:
     html = (WEB_ROOT / "index.html").read_text(encoding="utf-8")
     css = (WEB_ROOT / "styles.css").read_text(encoding="utf-8")
 
     assert 'aria-live="polite"' in html
     assert 'role="alert"' in html
-    assert re.search(r'<label for="first-value">', html)
-    assert re.search(r'<label for="second-value">', html)
+    for control_id in [
+        "effect-type",
+        "estimate",
+        "ci-lower",
+        "ci-upper",
+        "null-value",
+        "thresholds",
+    ]:
+        assert re.search(rf'<label for="{control_id}"', html)
     assert "<details>" in html and "<summary>" in html
     assert 'class="skip-link"' in html
+    assert 'aria-describedby="plot-description"' in html
+    assert 'id="reconstruction-summary"' in html
     assert ":focus-visible" in css
-    assert "No scientific formula or inference claim is included." in html
+    assert "They are not posterior probabilities" in html
+    assert "clinical decision support" in html
 
 
-def test_exports_use_explicit_columns_and_separate_png_hooks() -> None:
+def test_browser_effect_options_match_the_released_core_registry() -> None:
+    config = (WEB_ROOT / "js" / "config.js").read_text(encoding="utf-8")
+    configured = re.findall(r'key: "([a-z_]+)"', config)
+
+    assert configured == list(EFFECT_SPECS)
+    for key, spec in EFFECT_SPECS.items():
+        section = config.split(f'key: "{key}"', maxsplit=1)[1].split("},", maxsplit=1)[0]
+        assert f'label: "{spec.label}"' in section
+        assert f'family: "{spec.family}"' in section
+        assert f"defaultNull: {spec.default_null:g}" in section
+
+
+def test_exports_use_exact_focused_columns_and_separate_png_hooks() -> None:
     exports = (WEB_ROOT / "js" / "exports.js").read_text(encoding="utf-8")
+    keys = re.findall(r'\{ key: "([^"]+)", label:', exports)
 
-    assert "csvFromRows(columns, rows)" in exports
-    assert 'key: "label"' in exports
-    assert 'key: "value"' in exports
+    assert keys == [
+        "effect_display",
+        "effect_working",
+        "standardized_distance",
+        "compatibility",
+    ]
     assert "exportDashboardPng" in exports
-    assert "exportFigurePng" in exports
+    assert "exportManuscriptPng" in exports
+    assert "height: 1000" in exports
+    assert "width: 1400" in exports
+    assert "scale: 2" in exports
     assert "copyCaption" in exports
     assert "filenameSlug" in exports
+    assert not {
+        "relative_likelihood",
+        "log_likelihood",
+        "power",
+        "type_s",
+        "type_m",
+    } & set(keys)
+
+
+def test_related_tool_routes_are_static_and_explicit() -> None:
+    html = (WEB_ROOT / "index.html").read_text(encoding="utf-8")
+
+    for repository in [
+        "wald-likelihood-support",
+        "critical-effect-size",
+        "type-s-m-calibrator",
+        "precision-guardrail-planner",
+        "conf_curve_likelihood",
+    ]:
+        assert repository in html
+    assert "fetch(" not in html
