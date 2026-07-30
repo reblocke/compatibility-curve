@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "source_repository": "https://github.com/reblocke/conf_curve_likelihood",
+    "source_commit": "830756ecb11b4e8161f8dfe1fc75afc346ef4467",
+    "source_manifest": "tests/golden/manifest.json",
+    "source_cases": [
+      "B01",
+      "B02",
+      "B03",
+      "B08a-additive-midpoint",
+      "B08b-s-minus-2-clipping",
+      "B08c-log-likelihood-fallback",
+      "B08d-ratio-natural-clipping",
+      "B08e-unrepresentable-design-distance"
+    ],
+    "rtol": 1e-12,
+    "atol": 1e-14
+  },
+  "cases": {
+    "B01": {
+      "request": {
+        "effect_type": "mean_difference",
+        "lower": 0.11,
+        "upper": 0.73,
+        "null_value": 0.0,
+        "thresholds": [0.2],
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_display": 0.42,
+        "estimate_working": 0.42,
+        "standard_error_working": 0.15816617164664273,
+        "compatibility_at_null": 0.007920617864625943,
+        "threshold_working": 0.2,
+        "threshold_compatibility": 0.16424295999245675
+      }
+    },
+    "B02": {
+      "request": {
+        "effect_type": "odds_ratio",
+        "lower": 1.2,
+        "upper": 2.7,
+        "null_value": 1.0,
+        "thresholds": [1.25],
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_display": 1.8,
+        "estimate_working": 0.5877866649021191,
+        "standard_error_working": 0.20687375447019513,
+        "compatibility_at_null": 0.004493256717721136,
+        "threshold_working": 0.22314355131420976,
+        "threshold_compatibility": 0.0779619122829084
+      }
+    },
+    "B03": {
+      "request": {
+        "effect_type": "odds_ratio",
+        "lower": 1.2,
+        "upper": 2.7,
+        "null_value": 1.0,
+        "thresholds": [1.25],
+        "display_range_lower": 0.9,
+        "display_range_upper": 1.1,
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_display": 1.8,
+        "estimate_working": 0.5877866649021191,
+        "standard_error_working": 0.20687375447019513,
+        "compatibility_at_null": 0.004493256717721136,
+        "threshold_working": 0.22314355131420976,
+        "threshold_compatibility": 0.0779619122829084,
+        "display_first": 0.9,
+        "display_last": 1.1
+      }
+    },
+    "B08a-additive-midpoint": {
+      "request": {
+        "effect_type": "mean_difference",
+        "lower": -1e308,
+        "upper": 1e308,
+        "null_value": 0.0,
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_working": 0.0,
+        "standard_error_working": 5.10213456924654e307,
+        "compatibility_at_null": 1.0
+      }
+    },
+    "B08b-s-minus-2-clipping": {
+      "request": {
+        "effect_type": "mean_difference",
+        "lower": 1e308,
+        "upper": 1.79e308,
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_working": 1.3949999999999999e308,
+        "standard_error_working": 2.015343154852383e307,
+        "compatibility_at_null": 4.456316960717226e-12
+      }
+    },
+    "B08c-log-likelihood-fallback": {
+      "request": {
+        "effect_type": "mean_difference",
+        "lower": -0.0001,
+        "upper": 0.0001,
+        "null_value": 100.0,
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_working": 0.0,
+        "standard_error_working": 0.0000510213456924654,
+        "compatibility_at_null": 0.0
+      }
+    },
+    "B08d-ratio-natural-clipping": {
+      "request": {
+        "effect_type": "odds_ratio",
+        "lower": 8.988465674311579e307,
+        "upper": 1.7976931348623157e308,
+        "grid_points": 401
+      },
+      "expected": {
+        "estimate_display": 1.271161006153651e308,
+        "estimate_working": 709.436139303104,
+        "standard_error_working": 0.17682650957551946,
+        "compatibility_at_null": 0.0
+      }
+    },
+    "B08e-unrepresentable-design-distance": {
+      "request": {
+        "effect_type": "mean_difference",
+        "lower": -1e-320,
+        "upper": 1e-320,
+        "null_value": 1e308,
+        "grid_points": 401
+      },
+      "expected_error": "finite floating-point range"
+    }
+  }
+}

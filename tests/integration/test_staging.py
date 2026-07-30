@@ -26,7 +26,7 @@ def test_stage_manifest_records_versions_files_and_hashes(tmp_path: Path) -> Non
     assert json.loads((target / "manifest.json").read_text(encoding="utf-8")) == manifest
     assert manifest["schema_version"] == 1
     assert manifest["pyodide_version"] == "0.29.3"
-    assert manifest["pyodide_packages"] == []
+    assert manifest["pyodide_packages"] == ["numpy", "scipy"]
     assert (
         manifest["source_commit"]
         == subprocess.run(
@@ -37,22 +37,50 @@ def test_stage_manifest_records_versions_files_and_hashes(tmp_path: Path) -> Non
             text=True,
         ).stdout.strip()
     )
-    [package] = manifest["packages"]
-    assert package["role"] == "app"
-    assert package["distribution"] == "scientific-applet-template-package"
-    assert package["import_name"] == "template_applet"
-    assert package["version"] == "0.1.0"
-    assert package["artifact_url"] is None
-    assert package["artifact_sha256"] is None
-    assert package["files"]
+    app, core = manifest["packages"]
+    assert {
+        "role": app["role"],
+        "distribution": app["distribution"],
+        "import_name": app["import_name"],
+        "version": app["version"],
+        "artifact_url": app["artifact_url"],
+        "artifact_sha256": app["artifact_sha256"],
+    } == {
+        "role": "app",
+        "distribution": "compatibility-curve",
+        "import_name": "compatibility_curve",
+        "version": "0.1.0",
+        "artifact_url": None,
+        "artifact_sha256": None,
+    }
+    assert {
+        "role": core["role"],
+        "distribution": core["distribution"],
+        "import_name": core["import_name"],
+        "version": core["version"],
+        "artifact_url": core["artifact_url"],
+        "artifact_sha256": core["artifact_sha256"],
+    } == {
+        "role": "core",
+        "distribution": "wald-inference",
+        "import_name": "wald_inference",
+        "version": "0.1.1",
+        "artifact_url": (
+            "https://github.com/reblocke/wald-inference-core/releases/download/"
+            "v0.1.1/wald_inference-0.1.1-py3-none-any.whl"
+        ),
+        "artifact_sha256": ("95bc10d770836544d726362c401032e0640a5a9ec1573f043add7f6bd3a65457"),
+    }
+    assert app["files"] and core["files"]
 
-    all_files = package["files"]
+    all_files = [record for package in manifest["packages"] for record in package["files"]]
     for record in all_files:
         contents = (target / record["path"]).read_bytes()
         assert len(contents) == record["bytes"]
         assert hashlib.sha256(contents).hexdigest() == record["sha256"]
+    assert hashlib.sha256(_descriptor(app["files"]).encode()).hexdigest() == app["package_sha256"]
+    assert hashlib.sha256(_descriptor(core["files"]).encode()).hexdigest() == core["package_sha256"]
     descriptor = _descriptor(all_files)
-    assert hashlib.sha256(descriptor.encode()).hexdigest() == package["package_sha256"]
     assert hashlib.sha256(descriptor.encode()).hexdigest() == manifest["bundle_sha256"]
 
 
@@ -103,6 +131,29 @@ def test_stage_supports_an_external_locked_pure_python_package(tmp_path: Path) -
         config_path=config,
     )
 
-    assert [package["role"] for package in manifest["packages"]] == ["app", "test-core"]
-    assert manifest["packages"][1]["version"] == version
-    assert manifest["packages"][1]["files"]
+    assert [package["role"] for package in manifest["packages"]] == [
+        "app",
+        "core",
+        "test-core",
+    ]
+    assert manifest["packages"][2]["version"] == version
+    assert manifest["packages"][2]["files"]
+
+
+def test_stage_fails_if_core_checksum_does_not_match_the_lock(tmp_path: Path) -> None:
+    config = tmp_path / "browser-stage.toml"
+    source = (PROJECT_ROOT / "browser-stage.toml").read_text(encoding="utf-8")
+    config.write_text(
+        source.replace(
+            "95bc10d770836544d726362c401032e0640a5a9ec1573f043add7f6bd3a65457",
+            "0" * 64,
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(StagingError, match="checksum"):
+        stage_browser_packages(
+            tmp_path / "py",
+            project_root=PROJECT_ROOT,
+            config_path=config,
+        )

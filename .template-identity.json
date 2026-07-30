@@ -1,11 +1,11 @@
 {
-  "initialized": false,
+  "initialized": true,
   "schema_version": 1,
   "values": {
-    "app_title": "Scientific Applet Template",
-    "description": "Reusable client-side Python scaffold for a focused scientific applet",
-    "distribution_name": "scientific-applet-template-package",
-    "import_name": "template_applet",
-    "repository_name": "scientific-applet-template"
+    "app_title": "Wald Compatibility Curve",
+    "description": "Static client-side app for reconstructing Wald compatibility curves from reported 95% confidence intervals",
+    "distribution_name": "compatibility-curve",
+    "import_name": "compatibility_curve",
+    "repository_name": "compatibility-curve"
   }
 }

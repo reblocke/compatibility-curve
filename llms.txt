@@ -1,24 +1,36 @@
-# Scientific Applet Template
+# Wald Compatibility Curve
 
-Purpose: reusable static, client-side, Python-first scientific applet engineering scaffold.
+Purpose: focused static app that reconstructs a compatibility/confidence curve from a reported
+two-sided 95% confidence interval under a one-parameter Wald approximation.
 
-Important boundaries:
-- The repository implements no scientific formula.
-- The two-number addition is a replace-me demonstration only.
-- Python under `src/template_applet/` is source of truth.
-- `web/assets/py/` is generated from the locked environment and ignored.
-- Browser requests and responses use a strict JSON worker contract.
-- There is no backend, persistence, telemetry, cookie, or input-bearing URL.
+Scientific boundary:
+- `wald-inference` 0.1.1 is the exact pinned numerical authority.
+- Additive measures use the identity working scale; ratio measures use the log working scale.
+- Compatibility is the two-sided Wald p-value across candidate effect values.
+- Higher compatibility is not a posterior probability that a candidate effect is true.
+- The app has no exact/profile likelihood, relative support, power, critical effects, selection
+  rules, Type S/M, precision planning, binary significance label, or clinical threshold
+  validation.
+- Display range, axis spacing, and guide visibility are presentation only.
 
-Key files:
-- `README.md`: initialization and architecture.
-- `docs/TEMPLATE_USAGE.md`: downstream author workflow.
-- `docs/SCIENTIFIC_SCOPE.md`: required scientific scope prompts.
-- `docs/VALIDATION.md`: validation plan and evidence prompts.
-- `docs/PRIVACY.md`: data-flow boundary.
-- `browser-stage.toml`: exact package and Pyodide configuration.
-- `scripts/stage_browser_packages.py`: deterministic staging.
-- `scripts/initialize_template.py`: guarded identity initializer.
+Contract:
+- Request: effect type, optional estimate, 95% CI bounds, optional null, optional reference
+  thresholds, optional display range, and grid points.
+- Response: `meta`, `reconstruction`, `grid`, `thresholds`, `intervals_or_guides`, `warnings`.
+- Grid/CSV fields: `effect_display`, `effect_working`, `standardized_distance`, `compatibility`.
+- Browser JSON is strict and finite.
+
+Architecture:
+- Source Python: `src/compatibility_curve/`.
+- Numerical source: exact released `wald_inference` root public APIs.
+- Browser: `web/` plus a restartable Pyodide Web Worker.
+- Generated ignored stage: `web/assets/py/`.
+- Baseline evidence: `tests/fixtures/legacy_compatibility.json`.
+
+Privacy:
+- No backend, persistence, telemetry, cookies, accounts, upload, or input-bearing URL.
+- Inputs remain in transient page/worker memory.
+- Do not enter PHI or patient-level data.
 
 Canonical verification:
 `uv sync --locked && uv run playwright install chromium webkit && make verify`
