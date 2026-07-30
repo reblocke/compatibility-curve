@@ -1,6 +1,6 @@
 [project]
 name = "compatibility-curve"
-version = "0.1.1"
+version = "0.1.2"
 description = "Static client-side app for reconstructing Wald compatibility curves from reported 95% confidence intervals"
 readme = "README.md"
 requires-python = ">=3.12"

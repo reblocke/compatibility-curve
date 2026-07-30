@@ -6,7 +6,7 @@ pyodide_packages = ["numpy", "scipy"]
 role = "app"
 distribution = "compatibility-curve"
 import_name = "compatibility_curve"
-version = "0.1.1"
+version = "0.1.2"
 source = "project"
 
 [[packages]]
