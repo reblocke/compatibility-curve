@@ -2,7 +2,9 @@
   "schema_version": 1,
   "provenance": {
     "source_repository": "https://github.com/reblocke/conf_curve_likelihood",
-    "source_commit": "830756ecb11b4e8161f8dfe1fc75afc346ef4467",
+    "behavior_source_commit": "830756ecb11b4e8161f8dfe1fc75afc346ef4467",
+    "baseline_fixture_commit": "5fd501dd947d9b951d736014cfc2b310efa5e7b0",
+    "baseline_tag": "pre-split-baseline-2026-07-29",
     "source_manifest": "tests/golden/manifest.json",
     "source_cases": [
       "B01",

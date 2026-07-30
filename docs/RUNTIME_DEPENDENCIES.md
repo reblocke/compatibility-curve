@@ -58,7 +58,9 @@ Focused regression values were extracted from the integrated repository's frozen
 
 ```text
 repository: https://github.com/reblocke/conf_curve_likelihood
-source commit: 830756ecb11b4e8161f8dfe1fc75afc346ef4467
+behavior source commit: 830756ecb11b4e8161f8dfe1fc75afc346ef4467
+baseline fixture commit: 5fd501dd947d9b951d736014cfc2b310efa5e7b0
+baseline tag: pre-split-baseline-2026-07-29
 source manifest: tests/golden/manifest.json
 focused fixture: tests/fixtures/legacy_compatibility.json
 ```

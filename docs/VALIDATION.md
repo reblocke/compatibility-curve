@@ -16,9 +16,11 @@ The validation strategy separates:
 ## Frozen baseline provenance
 
 `tests/fixtures/legacy_compatibility.json` is a compact focused extraction from
-`reblocke/conf_curve_likelihood` golden fixtures at commit
-`830756ecb11b4e8161f8dfe1fc75afc346ef4467`. That source manifest records its original request
-and response hashes and NumPy/SciPy environment.
+`reblocke/conf_curve_likelihood` golden fixtures committed in baseline-freeze merge
+`5fd501dd947d9b951d736014cfc2b310efa5e7b0` and tagged
+`pre-split-baseline-2026-07-29`. The manifest's case records identify
+`830756ecb11b4e8161f8dfe1fc75afc346ef4467` as the behavior source. The frozen manifest records
+the original request and response hashes and NumPy/SciPy environment.
 
 The focused fixture retains only compatibility-owned inputs and expected summaries. It does not
 copy likelihood, support, critical-effect, power, selection, Type S/M, or precision fields.

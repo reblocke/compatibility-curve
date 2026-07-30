@@ -5,6 +5,8 @@ All notable changes are recorded here. This repository follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-29
+
 - Implement the focused compatibility/confidence-curve request and response contract.
 - Delegate reconstruction, scale conversion, standardized distance, and compatibility to the
   exact `wald-inference` 0.1.1 release artifact.
@@ -16,4 +18,8 @@ All notable changes are recorded here. This repository follows
 - Add deterministic core staging, scientific-ownership checks, privacy/storage/network tests,
   Chromium E2E, WebKit smoke, documentation, citation, and related-tool routing.
 
-No release tag or scientific validation claim is implied by this unreleased record.
+This initial prerelease records software and scientific-reference validation; it does not claim
+clinical validation or completion of the independent portfolio-wide review.
+
+[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.0

@@ -14,6 +14,16 @@ RTOL = FIXTURE["provenance"]["rtol"]
 ATOL = FIXTURE["provenance"]["atol"]
 
 
+def test_fixture_provenance_distinguishes_behavior_from_frozen_artifacts() -> None:
+    provenance = FIXTURE["provenance"]
+
+    assert provenance["behavior_source_commit"] == "830756ecb11b4e8161f8dfe1fc75afc346ef4467"
+    assert provenance["baseline_fixture_commit"] == "5fd501dd947d9b951d736014cfc2b310efa5e7b0"
+    assert provenance["baseline_tag"] == "pre-split-baseline-2026-07-29"
+    assert provenance["behavior_source_commit"] != provenance["baseline_fixture_commit"]
+    assert provenance["source_manifest"] == "tests/golden/manifest.json"
+
+
 @pytest.mark.parametrize("case_id", ["B01", "B02", "B03"])
 def test_ordinary_legacy_compatibility_subset(case_id: str) -> None:
     case = FIXTURE["cases"][case_id]
