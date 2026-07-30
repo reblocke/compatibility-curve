@@ -5,6 +5,15 @@ All notable changes are recorded here. This repository follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-30
+
+- Publish the navigation-enabled Pages source as a checksum-addressed patch release so the
+  deployed app, annotated tag, and release artifacts resolve to the same commit.
+- Prevent narrow-screen horizontal overflow by allowing result panels to shrink and resizing the
+  Plotly plot only after the results are visible and one animation frame has elapsed.
+- Preserve the v0.1.0 focused contract and exports while upgrading the sole numerical authority
+  to checksum-pinned `wald-inference` 0.4.1; no Wald formula is added or copied locally.
+
 ## [0.1.0] - 2026-07-29
 
 - Implement the focused compatibility/confidence-curve request and response contract.
@@ -21,5 +30,6 @@ All notable changes are recorded here. This repository follows
 This initial prerelease records software and scientific-reference validation; it does not claim
 clinical validation or completion of the independent portfolio-wide review.
 
-[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/reblocke/compatibility-curve/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.0

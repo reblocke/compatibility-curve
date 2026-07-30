@@ -59,7 +59,7 @@ The app calls the core for reconstruction, scale conversion, grid construction, 
 distance, and compatibility. It contains no local normal-tail or Wald formula.
 
 The browser effect options must match the core registry in key, order, label, family, and default
-null. Package tests bind core `0.1.1` to the same release URL and SHA-256 in metadata, lock, stage
+null. Package tests bind core `0.4.1` to the same release URL and SHA-256 in metadata, lock, stage
 configuration, installed direct URL, and wheel `RECORD`.
 
 ## Contract and interpretation
@@ -84,7 +84,8 @@ likelihood and posterior-probability meanings.
 Chromium E2E covers runtime initialization, ordinary ratio and additive cases, validation and
 worker recovery, presentation-only windows, textual/table/plot agreement, exact CSV headers,
 2800×2000 manuscript PNG, 1600×1200 dashboard PNG, caption clipboard, mobile layout, and keyboard
-navigation.
+navigation. The mobile smoke includes a post-render 390-pixel viewport regression that requires
+the document to remain horizontally contained.
 
 WebKit smoke covers worker initialization and an end-to-end calculation. Static and dynamic
 privacy checks require no backend, telemetry, storage, cookies, IndexedDB, input-bearing URL, or

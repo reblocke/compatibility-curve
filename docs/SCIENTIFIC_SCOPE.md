@@ -71,7 +71,7 @@ estimate and the reported 95% width determines the standard error using the stan
 computed under the one-parameter Wald approximation.
 
 All numerical primitives come from the public root API of the exact released
-[`wald-inference` 0.1.1](https://github.com/reblocke/wald-inference-core/releases/tag/v0.1.1)
+[`wald-inference` 0.4.1](https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.1)
 artifact. The app does not reimplement them. The release artifact and checksum are recorded in
 `pyproject.toml`, `uv.lock`, `browser-stage.toml`, and
 [Runtime dependencies](RUNTIME_DEPENDENCIES.md).
@@ -98,7 +98,7 @@ action. “Inside reported 95% CI” is a geometric lookup, not threshold valida
 
 ## Limitations and non-goals
 
-- Only reported two-sided 95% intervals are accepted in version 0.1.0.
+- Only reported two-sided 95% intervals are accepted in version 0.1.x.
 - The app does not handle exact confidence distributions, profile likelihood, Bayesian
   posterior distributions, multiparameter covariance, clustered estimates, or model-specific
   transformations beyond the registered identity/log scales.
