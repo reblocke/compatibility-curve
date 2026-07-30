@@ -6,14 +6,14 @@ pyodide_packages = ["numpy", "scipy"]
 role = "app"
 distribution = "compatibility-curve"
 import_name = "compatibility_curve"
-version = "0.1.0"
+version = "0.1.1"
 source = "project"
 
 [[packages]]
 role = "core"
 distribution = "wald-inference"
 import_name = "wald_inference"
-version = "0.1.1"
+version = "0.4.1"
 source = "external"
-artifact_url = "https://github.com/reblocke/wald-inference-core/releases/download/v0.1.1/wald_inference-0.1.1-py3-none-any.whl"
-artifact_sha256 = "95bc10d770836544d726362c401032e0640a5a9ec1573f043add7f6bd3a65457"
+artifact_url = "https://github.com/reblocke/wald-inference-core/releases/download/v0.4.1/wald_inference-0.4.1-py3-none-any.whl"
+artifact_sha256 = "d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b"

@@ -6,11 +6,11 @@ Numerical authority is the released pure-Python wheel:
 
 ```text
 distribution: wald-inference
-version: 0.1.1
-release: https://github.com/reblocke/wald-inference-core/releases/tag/v0.1.1
-artifact: https://github.com/reblocke/wald-inference-core/releases/download/v0.1.1/wald_inference-0.1.1-py3-none-any.whl
-SHA-256: 95bc10d770836544d726362c401032e0640a5a9ec1573f043add7f6bd3a65457
-tag commit: d1ffb0baa46eb8ad27175d58c90e4febc0ac2809
+version: 0.4.1
+release: https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.1
+artifact: https://github.com/reblocke/wald-inference-core/releases/download/v0.4.1/wald_inference-0.4.1-py3-none-any.whl
+SHA-256: d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b
+tag commit: f4613177b6dc81d194aa70762152de2bfa86663b
 license: MIT
 ```
 
@@ -18,6 +18,10 @@ The app uses the core's public reconstruction, effect-scale, finite-grid, standa
 and compatibility APIs. The URL and checksum are repeated in `pyproject.toml`, `uv.lock`, and
 `browser-stage.toml`. Staging verifies the lock, installed `direct_url.json`, wheel `RECORD`,
 package version, and all copied bytes.
+
+Core 0.4.1 fails closed when a finite working-scale ratio value would underflow to an
+unrepresentable natural-scale zero. The focused app continues to delegate every Wald calculation
+to the root-public core APIs and contains no local formula implementation.
 
 ## Browser runtime
 

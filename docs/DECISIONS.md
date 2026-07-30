@@ -1,10 +1,18 @@
 # Decisions
 
+## 2026-07-30 — Upgrade the numerical authority to repaired Core v0.4.1
+
+The v0.1.1 app patch adopts the annotated `wald-inference` v0.4.1 release at commit
+`f4613177b6dc81d194aa70762152de2bfa86663b`, using the exact wheel SHA-256
+`d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b`. The release fails closed
+when a finite ratio working-scale value would underflow to an unrepresentable natural-scale zero.
+The app still imports only root-public core APIs and adds or copies no Wald formula.
+
 ## 2026-07-29 — Released core owns all Wald calculations
 
-The app consumes public root APIs from exact `wald-inference` 0.1.1. It does not copy a formula,
-import legacy/internal modules, or call the broad integrated summary. This keeps one numerical
-authority and makes the focused contract independently auditable.
+The initial app consumed public root APIs from exact `wald-inference` 0.1.1. It did not copy a
+formula, import legacy/internal modules, or call the broad integrated summary. This established
+one numerical authority and made the focused contract independently auditable.
 
 ## 2026-07-29 — Compatibility-only response
 
