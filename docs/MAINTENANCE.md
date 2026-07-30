@@ -2,7 +2,7 @@
 
 ## Status and ownership
 
-Status: experimental, actively maintained prerelease software.
+Status: experimental, actively maintained software.
 
 Maintainer: Brian Locke (`@reblocke`). Use
 [repository issues](https://github.com/reblocke/compatibility-curve/issues) for reproducible bug,

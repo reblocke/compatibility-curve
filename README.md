@@ -15,6 +15,11 @@ or required precision. It does not validate an MCID, turn a result into a binary
 “significant/not significant” label, estimate the probability that a candidate effect is true,
 or provide clinical decision support.
 
+> **Release metadata:** Current app version: `0.1.3`.
+> Release maturity: experimental software. GitHub publication state is recorded on the versioned release page:
+> <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.3>.
+> Cite the exact tagged software release or commit used; see [CITATION.cff](CITATION.cff).
+
 ## Interpretation
 
 On the effect measure's working scale, the released `wald-inference` core reconstructs
