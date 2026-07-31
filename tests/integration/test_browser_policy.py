@@ -116,7 +116,7 @@ def test_related_wald_tool_blocks_are_static_compact_and_exact() -> None:
         "https://reblocke.github.io/wald-likelihood-support/",
         "https://reblocke.github.io/conf_curve_likelihood/",
         "https://github.com/reblocke/compatibility-curve",
-        "https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.1",
+        "https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.2",
         "https://github.com/reblocke/compatibility-curve/blob/main/docs/PRIVACY.md",
     ]
 
@@ -130,8 +130,8 @@ def test_related_wald_tool_blocks_are_static_compact_and_exact() -> None:
     assert "<h2>Related Wald tools</h2>" in html_block
     assert re.findall(r'href="([^"]+)"', html_block) == expected_links
     assert re.findall(r"\]\((https://[^)]+)\)", readme_block) == expected_links
-    assert "wald-inference Core v0.4.1" in html_block
-    assert "wald-inference Core v0.4.1" in readme_block
+    assert "wald-inference Core v0.4.2" in html_block
+    assert "wald-inference Core v0.4.2" in readme_block
     assert "Privacy note" in html_block
     assert "Privacy note" in readme_block
     assert "fetch(" not in html

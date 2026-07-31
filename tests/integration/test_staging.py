@@ -49,7 +49,7 @@ def test_stage_manifest_records_versions_files_and_hashes(tmp_path: Path) -> Non
         "role": "app",
         "distribution": "compatibility-curve",
         "import_name": "compatibility_curve",
-        "version": "0.1.3",
+        "version": "0.1.4",
         "artifact_url": None,
         "artifact_sha256": None,
     }
@@ -64,12 +64,12 @@ def test_stage_manifest_records_versions_files_and_hashes(tmp_path: Path) -> Non
         "role": "core",
         "distribution": "wald-inference",
         "import_name": "wald_inference",
-        "version": "0.4.1",
+        "version": "0.4.2",
         "artifact_url": (
             "https://github.com/reblocke/wald-inference-core/releases/download/"
-            "v0.4.1/wald_inference-0.4.1-py3-none-any.whl"
+            "v0.4.2/wald_inference-0.4.2-py3-none-any.whl"
         ),
-        "artifact_sha256": ("d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b"),
+        "artifact_sha256": ("225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349"),
     }
     assert app["files"] and core["files"]
 
@@ -101,7 +101,7 @@ def test_stage_is_deterministic_and_removes_stale_files(tmp_path: Path) -> None:
 def test_stage_fails_on_configured_version_mismatch(tmp_path: Path) -> None:
     config = tmp_path / "browser-stage.toml"
     source = (PROJECT_ROOT / "browser-stage.toml").read_text(encoding="utf-8")
-    config.write_text(source.replace('version = "0.1.3"', 'version = "9.9.9"'), encoding="utf-8")
+    config.write_text(source.replace('version = "0.1.4"', 'version = "9.9.9"'), encoding="utf-8")
 
     with pytest.raises(StagingError, match="expected '9.9.9'"):
         stage_browser_packages(
@@ -145,7 +145,7 @@ def test_stage_fails_if_core_checksum_does_not_match_the_lock(tmp_path: Path) ->
     source = (PROJECT_ROOT / "browser-stage.toml").read_text(encoding="utf-8")
     config.write_text(
         source.replace(
-            "d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b",
+            "225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349",
             "0" * 64,
         ),
         encoding="utf-8",

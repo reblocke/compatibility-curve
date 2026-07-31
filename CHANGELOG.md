@@ -5,6 +5,15 @@ All notable changes are recorded here. This repository follows
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-07-31
+
+- Adopt the official stable, immutable `wald-inference` v0.4.2 wheel from annotated tag target
+  `8afd0a463cc1d2586b8ce5cf92f40900647c3190`, pinned to SHA-256
+  `225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349`. Core v0.4.2 changes
+  release governance only and preserves every numerical API and frozen baseline value.
+- Synchronize app version 0.1.4 across package metadata, citation, browser staging, visible runtime
+  copy, lockfile, and tests while preserving the exact compatibility-only response/export
+  contracts, scientific tolerances, and client-side privacy boundary.
 - Harden CI, Pages, and release automation with least-privilege permissions, full-SHA Action pins,
   checkout credential isolation, and disabled dependency caching for release artifacts.
 - Require an annotated tag whose exact remote tag object is bound to the event commit on protected
@@ -15,9 +24,8 @@ All notable changes are recorded here. This repository follows
   body/asset comparison and post-publication immutable-release and asset verification.
 - Add grouped weekly Dependabot proposals, private vulnerability reporting guidance, contribution
   policy, scoped issue forms, a pull-request checklist, and repository-policy regressions.
-- Preserve version `0.1.3`, the exact `wald-inference` v0.4.1 wheel and checksum, every scientific
-  and browser contract, the compatibility-only negative scope, and the client-side privacy
-  boundary.
+- Preserve every scientific and browser contract and the compatibility-only negative scope; no
+  Wald formula is added or copied locally.
 
 ## [0.1.3] - 2026-07-30
 
@@ -62,7 +70,8 @@ All notable changes are recorded here. This repository follows
 This initial prerelease records software and scientific-reference validation; it does not claim
 clinical validation or completion of the independent portfolio-wide review.
 
-[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/reblocke/compatibility-curve/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/reblocke/compatibility-curve/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/reblocke/compatibility-curve/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/reblocke/compatibility-curve/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/reblocke/compatibility-curve/compare/v0.1.0...v0.1.1
