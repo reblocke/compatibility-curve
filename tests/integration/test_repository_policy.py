@@ -109,6 +109,8 @@ def test_workflow_permissions_credentials_and_release_cache_are_fail_closed() ->
         "    needs: verify-and-build\n    permissions:\n"
         "      contents: write # Create and publish the verified GitHub release." in release
     )
+    assert "attestations: read # Required to verify the immutable release" in publish
+    assert "attestations: read" not in verify_build
     assert "contents: read" not in publish
 
     workflow_text = "\n".join(
@@ -172,6 +174,31 @@ def test_release_is_signed_tag_main_contained_draft_first_and_immutable() -> Non
         < release.index("gh release download")
         < release.index("--draft=false")
     )
+
+
+def test_release_note_guards_reject_whitespace_only_content(tmp_path: Path) -> None:
+    release = (WORKFLOW_ROOT / "release.yml").read_text(encoding="utf-8")
+    verify_build, publish = release.split("\n  publish:", maxsplit=1)
+    guard = "grep -q '[^[:space:]]'"
+
+    assert f'{guard} "$bundle/release-notes.md"' in verify_build
+    assert f"{guard} dist/release-notes.md" in publish
+    assert release.count(guard) == 2
+
+    notes = tmp_path / "release-notes.md"
+    notes.write_text(" \t\n\n", encoding="utf-8")
+    whitespace_only = subprocess.run(
+        ["grep", "-q", "[^[:space:]]", notes],
+        check=False,
+    )
+    notes.write_text("\n# Release notes\n", encoding="utf-8")
+    substantive = subprocess.run(
+        ["grep", "-q", "[^[:space:]]", notes],
+        check=False,
+    )
+
+    assert whitespace_only.returncode != 0
+    assert substantive.returncode == 0
 
 
 def test_release_installs_checksummed_github_cli_before_credentialed_commands() -> None:
