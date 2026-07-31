@@ -21,9 +21,9 @@ protected health information, credentials, restricted data, or sensitive values 
 report. Contribution and release requirements are documented in
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-> **Release metadata:** Current app version: `0.1.4`.
+> **Release metadata:** Current app version: `0.1.5`.
 > Release maturity: experimental software. GitHub publication state is recorded on the versioned release page:
-> <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.4>.
+> <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.5>.
 > Cite the exact tagged software release or commit used; see [CITATION.cff](CITATION.cff).
 
 ## Interpretation
