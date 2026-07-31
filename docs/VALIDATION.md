@@ -113,8 +113,8 @@ For each release, record:
 
 - reviewed commit and tag;
 - exact equality between the version tag and authoritative project version;
-- GitHub verification of the signed annotated tag and its remote tag-object identity;
-- containment of the verified tag target in protected `main` history before repository code;
+- exact identity of the local and remote annotated tag objects and their event-commit target;
+- containment of the tag target in protected `main` history before repository code;
 - app, core, Python, Pyodide, NumPy, SciPy, Plotly, and browser versions;
 - core artifact URL/checksum and stage manifest checksum;
 - unit, regression, policy, staging, Chromium, and WebKit results;
@@ -127,6 +127,6 @@ For each release, record:
 
 Repository-policy tests also verify full-SHA Action pins with version comments, checkout credential
 isolation, least-privilege workflow permissions, release-cache disablement, protected-main and
-signed-tag gates, checksummed GitHub CLI installation, exact draft verification, stable
+annotated-tag identity gates, checksummed GitHub CLI installation, exact draft verification, stable
 publication ordering, Dependabot coverage, and private-reporting guidance. These checks establish
 engineering policy, not scientific or clinical validity.
