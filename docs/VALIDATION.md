@@ -112,8 +112,21 @@ deployed Pages URL at the exact reviewed commit.
 For each release, record:
 
 - reviewed commit and tag;
+- exact equality between the version tag and authoritative project version;
+- GitHub verification of the signed annotated tag and its remote tag-object identity;
+- containment of the verified tag target in protected `main` history before repository code;
 - app, core, Python, Pyodide, NumPy, SciPy, Plotly, and browser versions;
 - core artifact URL/checksum and stage manifest checksum;
 - unit, regression, policy, staging, Chromium, and WebKit results;
+- locally built and re-downloaded draft-body and asset comparison;
+- nonempty release notes extracted only from the tagged version's changelog section;
+- exact GitHub CLI archive version and checksum;
+- published stable-release immutability;
 - deployed Pages smoke result;
 - known scientific and deployment limitations.
+
+Repository-policy tests also verify full-SHA Action pins with version comments, checkout credential
+isolation, least-privilege workflow permissions, release-cache disablement, protected-main and
+signed-tag gates, checksummed GitHub CLI installation, exact draft verification, stable
+publication ordering, Dependabot coverage, and private-reporting guidance. These checks establish
+engineering policy, not scientific or clinical validity.

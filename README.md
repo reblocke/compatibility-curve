@@ -15,6 +15,12 @@ or required precision. It does not validate an MCID, turn a result into a binary
 “significant/not significant” label, estimate the probability that a candidate effect is true,
 or provide clinical decision support.
 
+Public engineering, scientific-boundary, and accessibility reports use the scoped issue forms in
+`.github/`. Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md); never put
+protected health information, credentials, restricted data, or sensitive values in a public
+report. Contribution and release requirements are documented in
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
 > **Release metadata:** Current app version: `0.1.3`.
 > Release maturity: experimental software. GitHub publication state is recorded on the versioned release page:
 > <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.3>.
@@ -156,6 +162,16 @@ make serve
 
 Then open `http://127.0.0.1:8000/`. Other useful targets are `make stage-web`, `make fmt`,
 `make fmt-check`, `make lint`, `make test`, `make e2e`, and `make e2e-webkit-smoke`.
+
+A new version is published only from a signed annotated tag whose commit is already contained in
+protected `main`. The release workflow verifies the tag before executing repository code, reruns
+the complete suite with read-only contents permission, builds a deterministic source archive,
+browser-stage manifest, and checksums, and transfers them to a narrowly write-enabled publishing
+job. That job requires repository release immutability through the
+`RELEASE_SETTINGS_READ_TOKEN` Actions secret, creates one draft stable release, re-downloads and
+compares the exact release body and every asset, and publishes only the verified draft.
+Credentialed commands use an exact checksummed GitHub CLI. Release notes contain only the tagged
+version's nonempty changelog section.
 
 ## Validation
 
