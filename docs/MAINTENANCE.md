@@ -6,13 +6,16 @@ Status: experimental, actively maintained software.
 
 Maintainer: Brian Locke (`@reblocke`). Use
 [repository issues](https://github.com/reblocke/compatibility-curve/issues) for reproducible bug,
-scientific-boundary, accessibility, privacy, or documentation reports. Changes are reviewed
-through pull requests.
+scientific-boundary, accessibility, or documentation reports. Report vulnerabilities and privacy
+defects privately through [SECURITY.md](../SECURITY.md). Changes are reviewed through pull
+requests.
 
 ## Dependency updates
 
 Review Pyodide, Plotly, Python, NumPy, SciPy, uv, Ruff, pytest, Hypothesis, Playwright, GitHub
-Actions, and the scientific core deliberately.
+Actions, and the scientific core deliberately. Dependabot groups weekly `uv` and GitHub Actions
+updates for review; it does not authorize automatic merging. Keep each third-party Action pinned
+to a full commit SHA with its reviewed version in a comment.
 
 For a core update:
 
@@ -29,12 +32,29 @@ Do not consume an unreleased sibling checkout or silently widen a tolerance.
 ## Release process
 
 Use a reviewed pull request. Verify the exact candidate head locally and in a clean clone, then
-confirm GitHub CI. After merge, confirm Pages at the merge commit. Only then create an annotated
-semantic-version tag on that exact verified commit.
+confirm GitHub CI. After merge, confirm Pages at the merge commit. Only then create a signed,
+annotated semantic-version tag on that exact verified commit.
 
-The tag workflow reruns the complete suite and publishes a GitHub prerelease with a deterministic
-source archive, browser-stage manifest, and SHA-256 checksums. Promotion from prerelease requires
-a passing hosted smoke and portfolio-level validation.
+The release workflow verifies the signature and remote tag object before it executes repository
+code. It requires the event commit to be contained in protected `main`, parses the project version
+with isolated Python, reruns the complete suite under read-only contents permission, disables the
+shared dependency cache for the release build, and creates the deterministic source archive,
+browser-stage manifest, and SHA-256 checksums before a release exists. A separate job with narrowly
+scoped contents-write permission uses an exact checksummed GitHub CLI, requires repository release
+immutability through the `RELEASE_SETTINGS_READ_TOKEN` Actions secret, creates a draft stable
+release with every asset, re-downloads and compares the draft assets and release body, then
+publishes only the verified draft. The tag must equal `v` plus the authoritative project version,
+and the public release body contains only that version's nonempty changelog section.
+
+If the workflow fails after draft creation, retain the draft for inspection. Repair the workflow
+and create a new tag only after the failure is understood; never move a published tag or replace a
+published asset. The draft is the candidate; publish once into the intended stable lifecycle state
+after hosted Pages and portfolio-level validation are complete.
+
+Repository settings must retain read-only default workflow permissions, protect `main` and `v*`
+tags, enable private vulnerability reporting and Dependabot security updates, and enable immutable
+releases before the next tag is created. Store a repository-administration read token as the
+`RELEASE_SETTINGS_READ_TOKEN` Actions secret so the workflow can fail closed before publication.
 
 ## Compatibility policy
 
