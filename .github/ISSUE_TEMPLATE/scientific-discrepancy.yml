@@ -16,7 +16,7 @@ body:
     id: version
     attributes:
       label: Exact app and Core versions
-      placeholder: compatibility-curve v0.1.4; wald-inference v0.4.2
+      placeholder: compatibility-curve v0.1.5; wald-inference v0.4.2
     validations:
       required: true
   - type: dropdown
