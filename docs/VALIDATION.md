@@ -59,8 +59,15 @@ The app calls the core for reconstruction, scale conversion, grid construction, 
 distance, and compatibility. It contains no local normal-tail or Wald formula.
 
 The browser effect options must match the core registry in key, order, label, family, and default
-null. Package tests bind core `0.4.1` to the same release URL and SHA-256 in metadata, lock, stage
+null. Package tests bind core `0.4.2` to the same release URL and SHA-256 in metadata, lock, stage
 configuration, installed direct URL, and wheel `RECORD`.
+
+Core v0.4.2 is a stable, immutable governance-only release at annotated tag object
+`26ea4a721b2dfa07f75c2f388a42d6272c88477c`, peeling to commit
+`8afd0a463cc1d2586b8ce5cf92f40900647c3190`. Core main CI run `30628647428` and release run
+`30629025349` succeeded, and the release preserves every value in the frozen 23,095-value
+pre-split parity contract. This app retains its existing `rtol=1e-12`, `atol=1e-14` scientific
+comparisons without widening.
 
 ## Contract and interpretation
 

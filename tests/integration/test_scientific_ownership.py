@@ -79,9 +79,9 @@ def test_exact_core_release_is_consistent_across_lock_and_stage_configuration() 
     stage = (PROJECT_ROOT / "browser-stage.toml").read_text(encoding="utf-8")
     artifact = (
         "https://github.com/reblocke/wald-inference-core/releases/download/"
-        "v0.4.1/wald_inference-0.4.1-py3-none-any.whl"
+        "v0.4.2/wald_inference-0.4.2-py3-none-any.whl"
     )
-    digest = "d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b"
+    digest = "225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349"
 
     assert f"{artifact}#sha256={digest}" in project
     assert artifact in lock

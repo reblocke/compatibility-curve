@@ -4,7 +4,7 @@ Purpose: focused static app that reconstructs a compatibility/confidence curve f
 two-sided 95% confidence interval under a one-parameter Wald approximation.
 
 Scientific boundary:
-- `wald-inference` 0.4.1 is the exact pinned numerical authority.
+- `wald-inference` 0.4.2 is the exact pinned numerical authority.
 - Additive measures use the identity working scale; ratio measures use the log working scale.
 - Compatibility is the two-sided Wald p-value across candidate effect values.
 - Higher compatibility is not a posterior probability that a candidate effect is true.

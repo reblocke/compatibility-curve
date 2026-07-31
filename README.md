@@ -21,9 +21,9 @@ protected health information, credentials, restricted data, or sensitive values 
 report. Contribution and release requirements are documented in
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-> **Release metadata:** Current app version: `0.1.3`.
+> **Release metadata:** Current app version: `0.1.4`.
 > Release maturity: experimental software. GitHub publication state is recorded on the versioned release page:
-> <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.3>.
+> <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.4>.
 > Cite the exact tagged software release or commit used; see [CITATION.cff](CITATION.cff).
 
 ## Interpretation
@@ -115,7 +115,7 @@ precision fields. CSV uses exactly the four grid columns shown above.
 
 ## Numerical authority and architecture
 
-`wald-inference` `0.4.1` is the numerical source of truth. It is pinned to its exact released
+`wald-inference` `0.4.2` is the numerical source of truth. It is pinned to its exact released
 wheel and SHA-256 in `pyproject.toml`, `uv.lock`, and `browser-stage.toml`. The local
 `compatibility_curve` package owns only request validation, focused response assembly, display
 grid selection, warnings, and browser serialization.
@@ -203,7 +203,7 @@ protected health information or patient-level data. See [Privacy](docs/PRIVACY.m
 - [Adjacent focused app: likelihood support](https://reblocke.github.io/wald-likelihood-support/)
 - [Integrated workbench](https://reblocke.github.io/conf_curve_likelihood/)
 - [Source repository](https://github.com/reblocke/compatibility-curve)
-- [wald-inference Core v0.4.1](https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.1)
+- [wald-inference Core v0.4.2](https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.2)
 - [Privacy note](https://github.com/reblocke/compatibility-curve/blob/main/docs/PRIVACY.md)
 
 These are static navigation links, not runtime dependencies.

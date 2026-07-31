@@ -1,5 +1,19 @@
 # Decisions
 
+## 2026-07-31 — Adopt stable Core v0.4.2 without numerical change
+
+The v0.1.4 app patch adopts the stable, immutable `wald-inference` v0.4.2 release at commit
+`8afd0a463cc1d2586b8ce5cf92f40900647c3190`, annotated tag object
+`26ea4a721b2dfa07f75c2f388a42d6272c88477c`, and exact wheel SHA-256
+`225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349`. Core v0.4.2 changes only
+repository and release governance; it preserves every formula, public API, tolerance, dependency
+resolution, and frozen baseline value, including the v0.4.1 strict ratio-underflow repair.
+
+The app still imports only root-public APIs and adds or copies no Wald formula. Its focused
+compatibility response, exports, interpretation, privacy boundary, and scientific tolerances
+remain unchanged; exact pin, lock, staging, legacy parity, strict-JSON, Chromium, WebKit, and
+no-sibling clean-checkout verification are release gates.
+
 ## 2026-07-31 — Release verification uses repository workflow credentials only
 
 This decision supersedes only the signed-tag-verification and dedicated settings-secret portions

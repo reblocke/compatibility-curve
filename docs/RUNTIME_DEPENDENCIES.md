@@ -6,11 +6,14 @@ Numerical authority is the released pure-Python wheel:
 
 ```text
 distribution: wald-inference
-version: 0.4.1
-release: https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.1
-artifact: https://github.com/reblocke/wald-inference-core/releases/download/v0.4.1/wald_inference-0.4.1-py3-none-any.whl
-SHA-256: d7272023f65088729d3ff997cab7cac57b84f22ac6108244ec2170434557d99b
-tag commit: f4613177b6dc81d194aa70762152de2bfa86663b
+version: 0.4.2
+release: https://github.com/reblocke/wald-inference-core/releases/tag/v0.4.2
+artifact: https://github.com/reblocke/wald-inference-core/releases/download/v0.4.2/wald_inference-0.4.2-py3-none-any.whl
+SHA-256: 225331d7b9d7b70e2508eecb92851a92a8c4e245baf412a1eb0f464d85da1349
+size: 38132 bytes
+tag object: 26ea4a721b2dfa07f75c2f388a42d6272c88477c
+tag commit: 8afd0a463cc1d2586b8ce5cf92f40900647c3190
+release state: stable and immutable
 license: MIT
 ```
 
@@ -19,7 +22,9 @@ and compatibility APIs. The URL and checksum are repeated in `pyproject.toml`, `
 `browser-stage.toml`. Staging verifies the lock, installed `direct_url.json`, wheel `RECORD`,
 package version, and all copied bytes.
 
-Core 0.4.1 fails closed when a finite working-scale ratio value would underflow to an
+Core 0.4.2 changes repository and release governance only while preserving every numerical
+formula, public API, tolerance, dependency resolution, and frozen baseline value. It retains the
+v0.4.1 fail-closed behavior when a finite working-scale ratio value would underflow to an
 unrepresentable natural-scale zero. The focused app continues to delegate every Wald calculation
 to the root-public core APIs and contains no local formula implementation.
 
