@@ -26,6 +26,20 @@ report. Contribution and release requirements are documented in
 > <https://github.com/reblocke/compatibility-curve/releases/tag/v0.1.5>.
 > Cite the exact tagged software release or commit used; see [CITATION.cff](CITATION.cff).
 
+## Why this app exists and who it is for
+
+A reported estimate and confidence interval are often reduced to whether the interval crosses a
+single reference value. This app instead shows the full continuum of candidate effects and their
+compatibility with the observed estimate under the reconstructed one-parameter Wald model. The
+focused interface keeps that observed-data question separate from likelihood-support and
+repeated-study design calculations.
+
+The app is intended for researchers, methodologists, educators, reviewers, and readers of
+published aggregate results who want to inspect that continuum or compare user-supplied reference
+values. It is not intended for patient-level input, diagnosis, treatment selection, regulatory
+use, or automated decisions. Users must decide whether the reported interval and effect scale make
+the Wald reconstruction appropriate.
+
 ## Interpretation
 
 On the effect measure's working scale, the released `wald-inference` core reconstructs
@@ -112,6 +126,25 @@ warnings
 
 The contract intentionally contains no likelihood, support, power, selection, Type S/M, or
 precision fields. CSV uses exactly the four grid columns shown above.
+
+## Scientific basis and citation roles
+
+Compatibility terminology and interpretation are informed by:
+
+> Rafi Z, Greenland S. Semantic and cognitive tools to aid statistical science: replace
+> confidence and significance by compatibility and surprise. *BMC Medical Research
+> Methodology*. 2020;20:244.
+> [doi:10.1186/s12874-020-01105-9](https://doi.org/10.1186/s12874-020-01105-9).
+
+The source was retrieved on 2026-08-01 and is available under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). It supports terminology and the
+interpretation of a compatibility curve as a p-value function. It does not govern this app's exact
+formula, effect registry, numerical tolerance, serialization, or browser behavior. No source text,
+figure, table, dataset, or code is copied here.
+
+The exact released `wald-inference` Core artifact described below is the implementation authority.
+Its documented one-parameter Wald definitions and tests govern every numerical result; this app
+owns only the focused contract and presentation.
 
 ## Numerical authority and architecture
 
@@ -210,5 +243,8 @@ These are static navigation links, not runtime dependencies.
 
 ## License and citation
 
-Code is MIT licensed. Copyright (c) 2026 Brian Locke. Cite the tagged release or exact commit
-used; see [CITATION.cff](CITATION.cff).
+Code is MIT licensed. Copyright (c) 2026 Brian Locke. Cite the exact tagged software release or
+commit used; machine-readable metadata is in [CITATION.cff](CITATION.cff). Cite Rafi and Greenland
+as well when discussing the compatibility terminology or interpretation. The software citation,
+methodology citation, and Core validation evidence serve different roles and should not be treated
+as interchangeable.
